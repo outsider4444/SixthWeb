@@ -1,0 +1,17 @@
+﻿Тестовая страница для создания нового материала
+
+<script src="~/ckeditor/ckeditor.js"></script>
+<link href="~/ckeditor/contents.css" rel="stylesheet" />
+
+
+<p>Название</p>
+<input type="text" name="name" />
+
+
+<!--Editor-->
+<textarea id="editor"></textarea>
+<script>
+    CKEDITOR.replace('editor', {
+        height: 220
+    });
+</script>
