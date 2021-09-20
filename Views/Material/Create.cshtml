@@ -1,15 +1,22 @@
-﻿Тестовая страница для создания нового материала
+﻿@model SixthWeb.Models.Material
 
 <script src="~/ckeditor/ckeditor.js"></script>
 <link href="~/ckeditor/contents.css" rel="stylesheet" />
 
 
-<p>Название</p>
-<input type="text" name="name" />
 
+<form asp-action="Create" asp-controller="Material">
+    <div class="form-group">
+        <label asp-for="Name" class="control-label">Название</label>
+        <input type="text" asp-for="Name" class="form-control" />
+    </div>
+    <label >Текст материала:</label>
+    <input type="text" id="editor" />
+    <input type="submit" value="Отправить" class="btn btn-default" />
+</form>
 
 <!--Editor-->
-<textarea id="editor"></textarea>
+
 <script>
     CKEDITOR.replace('editor', {
         height: 220

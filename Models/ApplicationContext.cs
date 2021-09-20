@@ -10,6 +10,7 @@ namespace SixthWeb.Models
 {
     public class ApplicationContext : IdentityDbContext<User>
     {
+        public DbSet<Material> Materials { get; set; }
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {

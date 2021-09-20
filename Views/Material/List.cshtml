@@ -1,8 +1,12 @@
-﻿<div>
+﻿@model IEnumerable<SixthWeb.Models.Material>
 
+<div>
     <a asp-action="Create">Создать новый материал</a>
 
-    <p>
-        Тут будет список материалов для прочтения
-    </p>
+    <table class="table">
+        @foreach (var p in Model)
+        {
+            <tr><td>@p.Name</td></tr>
+        }
+    </table>
 </div>
