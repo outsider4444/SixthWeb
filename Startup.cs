@@ -21,6 +21,7 @@ namespace SixthWeb
             //тест изменени€
             //раз, раз, раз. –аботает?
             //тест 2
+            //тест 3
             Configuration = configuration;
         }
 
