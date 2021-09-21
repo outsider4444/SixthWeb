@@ -18,6 +18,7 @@ namespace SixthWeb
     {
         public Startup(IConfiguration configuration)
         {
+            //тест изменения
             Configuration = configuration;
         }
 
