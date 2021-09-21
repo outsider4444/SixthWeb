@@ -1,8 +1,37 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    Layout = null;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Здравствуйте, @User.Identity.Name</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!--<div class="text-center">
+    <h1 class="display-4">Здравствуйте, @User.Identity.Name</h1>-->
+@* <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
+<!--</div>-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+</head>
+<body>
+    <div class="text-center">
+        <br />
+        <br />
+        <br />
+        <br />
+        <h1>Здравствуй Мир!</h1>
+        <h4>Авторизируйтесь, или зарегистрируйтесь в системе</h4>
+        <br />
+        <br />
+        <br />
+        <br />
+        <a class="btn btn-primary" asp-controller="Account" asp-action="Login">Логин</a>
+    </div>
+    <div class="text-center">
+        <br />
+        <br />
+        <a class="btn btn-primary" asp-controller="Account" asp-action="Register">Регистрация</a>
+    </div>
+</body>
+</html>
