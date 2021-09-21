@@ -12,8 +12,7 @@ namespace SixthWeb.Models
         public string Name { get; set; }
         public string Text { get; set; }
 
-        // Добавление вопроса к статье (Попровьте если ошибся)
-        public Mquestion Question { get; set; }
+        
     }
 
     // Вопрос к Статье
@@ -22,8 +21,8 @@ namespace SixthWeb.Models
         public int Id { get; set; }
         public string Name { get; set; }
 
-        // Ответ на вопрос (Попровьте если ошибся)
-        public Answer Answer { get; set; }
+        // Добавление вопроса к статье (Попровьте если ошибся)
+        public Material Material { get; set; }
     }
 
     // Ответ к вопросу
@@ -31,5 +30,8 @@ namespace SixthWeb.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+
+        // Ответ на вопрос (Попровьте если ошибся)
+        public Mquestion Question { get; set; }
     }
 }

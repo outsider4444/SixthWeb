@@ -6,7 +6,10 @@
     <table class="table">
         @foreach (var p in Model)
         {
-            <tr><td>@p.Name</td></tr>
+            <tr>
+                <td>@p.Name</td>
+                <td><a asp-action="Detail" asp-controller="Material" asp-route-id="@p.Id">Подробности</a></td>
+            </tr>
         }
     </table>
 </div>

@@ -13,13 +13,14 @@ namespace SixthWeb.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationContext context)
+        public HomeController(ILogger<HomeController> logger, ApplicationContext context) // ApplicationContext для бд
         {
             _logger = logger;
 
             db = context;
         }
         private ApplicationContext db;
+        // Вывод данных из БД с пользователями, для того чтобы выводить о них информацию
         public IActionResult Index()
         {
             return View(db.Users);

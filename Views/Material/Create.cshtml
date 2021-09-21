@@ -1,24 +1,29 @@
 ﻿@model SixthWeb.Models.Material
 
-<script src="~/ckeditor/ckeditor.js"></script>
-<link href="~/ckeditor/contents.css" rel="stylesheet" />
+<script src="~/js/ckeditor4/ckeditor.js"></script>
+<script src="~/js/jquery.min.js"></script>
 
+<form method="post">
 
-
-<form asp-action="Create" asp-controller="Material" method="post" >
-    <div class="form-group">
-        <label asp-for="Name" class="control-label">Название</label>
-        <input type="text" asp-for="Name" class="form-control" />
+    <div>
+        <label asp-for="Name">Название статьи</label><br />
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
     </div>
-    <label >Текст материала:</label>
-    <!-- Ckeditor, который необходимо починить-->
-    <input type="text" id="editor" />
-    <input type="submit" value="Отправить" class="btn btn-primary" />
-</form>
 
-<!--Editor-->
+    <div>
+        <label asp-for="Text">Содержание статьи</label>
+        <textarea name="Text" id="Text" rows="10" cols="80" asp-for="Text"> </textarea>
+    </div>
+        <button type="submit" asp-action="Create" asp-controller="Material">Подтвердить</button>
+</form>
 <script>
-    CKEDITOR.replace('editor', {
-        height: 220
+
+    $(document).ready(function () {
+        CKEDITOR.replace("#Text");
+    });
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+        var editor = CKEDITOR.replace('Text');
     });
 </script>
