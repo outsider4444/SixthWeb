@@ -13,14 +13,16 @@ namespace SixthWeb.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationContext context)
         {
             _logger = logger;
-        }
 
+            db = context;
+        }
+        private ApplicationContext db;
         public IActionResult Index()
         {
-            return View();
+            return View(db.Users);
         }
 
         public IActionResult Privacy()

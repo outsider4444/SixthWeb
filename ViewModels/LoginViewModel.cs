@@ -8,6 +8,8 @@ namespace SixthWeb.ViewModels
 {
     public class LoginViewModel
     {
+        // Описание работы страницы логина
+        // (что требуется, обязательные условия и тд)
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }

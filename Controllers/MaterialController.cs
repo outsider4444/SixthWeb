@@ -19,6 +19,13 @@ namespace SixthWeb.Controllers
         {
             return View(db.Materials);
         }
+
+        // !!! Починить CkEditor
+
+        // Добавить страничку с подробным описанием материала
+
+        // Добавить страничку с созданием/редактированием вопроса к статье
+
         public IActionResult Create()
         {
             return View();

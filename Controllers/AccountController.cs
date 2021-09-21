@@ -16,18 +16,22 @@ namespace SixthWeb.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
         }
+
+        // Вывод страницы регистрации
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
+
+        // Действие при отправке данных на регистрацию
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
                 User user = new User { Email = model.Email, UserName = model.Email,
-                    Name = model.Name, Surname=model.Surname };
+                    Name = model.Name, Surname=model.Surname, IsMentor=model.IsMentor };
                 // добавляем пользователя
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -47,12 +51,14 @@ namespace SixthWeb.Controllers
             return View(model);
         }
 
+        // Вывод страницы Логин
         [HttpGet]
         public IActionResult Login(string returnUrl = null)
         {
             return View(new LoginViewModel { ReturnUrl = returnUrl });
         }
 
+        // Действие при отправке данных на странице Логин
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
@@ -81,6 +87,7 @@ namespace SixthWeb.Controllers
             return View(model);
         }
 
+        // Выход из аккаунта
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()

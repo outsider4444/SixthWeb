@@ -8,6 +8,9 @@ namespace SixthWeb.ViewModels
 {
     public class RegisterViewModel
     {
+        // Описание страницы для регистрации пользователя
+        // (что выведется, что должно приниматься, условия для успешной работы и тд)
+
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -30,5 +33,8 @@ namespace SixthWeb.ViewModels
         [DataType(DataType.Password)]
         [Display(Name = "Подтвердить пароль")]
         public string PasswordConfirm { get; set; }
+
+        [Display(Name = "Ментор:")]
+        public bool IsMentor { get; set; }
     }
 }

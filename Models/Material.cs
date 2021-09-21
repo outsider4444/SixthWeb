@@ -5,10 +5,31 @@ using System.Threading.Tasks;
 
 namespace SixthWeb.Models
 {
+    // Статья
     public class Material
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Text { get; set; }
+
+        // Добавление вопроса к статье (Попровьте если ошибся)
+        public Mquestion Question { get; set; }
+    }
+
+    // Вопрос к Статье
+    public class Mquestion
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        // Ответ на вопрос (Попровьте если ошибся)
+        public Answer Answer { get; set; }
+    }
+
+    // Ответ к вопросу
+    public class Answer
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

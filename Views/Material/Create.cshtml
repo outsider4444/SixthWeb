@@ -5,18 +5,18 @@
 
 
 
-<form asp-action="Create" asp-controller="Material">
+<form asp-action="Create" asp-controller="Material" method="post" >
     <div class="form-group">
         <label asp-for="Name" class="control-label">Название</label>
         <input type="text" asp-for="Name" class="form-control" />
     </div>
     <label >Текст материала:</label>
+    <!-- Ckeditor, который необходимо починить-->
     <input type="text" id="editor" />
-    <input type="submit" value="Отправить" class="btn btn-default" />
+    <input type="submit" value="Отправить" class="btn btn-primary" />
 </form>
 
 <!--Editor-->
-
 <script>
     CKEDITOR.replace('editor', {
         height: 220
