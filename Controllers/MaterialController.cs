@@ -10,7 +10,7 @@ namespace SixthWeb.Controllers
 {
     public class MaterialController : Controller
     {
-        List<Material> materials;
+        // List<Material> materials;
         private ApplicationContext db;
         public MaterialController(ApplicationContext context)
         {

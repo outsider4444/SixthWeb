@@ -1,0 +1,21 @@
+﻿@model SixthWeb.ViewModels.AddSurveyViewModel
+
+
+<h1>Создать новый тест</h1>
+<body>
+    <form>
+        <div class="form-group">
+            <label for="testName">Test Name:</label>
+            <input name="name" type="text" id="surveyName" />
+            <span asp-validation-for="NameOfSurvey"></span>
+        </div>
+        <h2>Questions</h2>
+        <div id="questionsSection">
+        </div>
+        <div>
+            <button class="btn btn-primary" id="createSurveyFormAddQuestion">Add a Question</button><br>
+            <button id="submit">Finish and Save Test</button><br>
+            <button id="discard">Discard Test</button>
+        </div>
+    </form>
+</body>

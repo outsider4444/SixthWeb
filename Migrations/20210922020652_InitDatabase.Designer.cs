@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SixthWeb.Models;
 
 namespace SixthWeb.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20210922020652_InitDatabase")]
+    partial class InitDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -211,9 +213,6 @@ namespace SixthWeb.Migrations
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SurveyId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Text")
                         .HasColumnType("nvarchar(max)");
 
@@ -225,41 +224,9 @@ namespace SixthWeb.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SurveyId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Questions");
-                });
-
-            modelBuilder.Entity("SixthWeb.Models.Survey", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NameOfSurvey")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Surveys");
                 });
 
             modelBuilder.Entity("SixthWeb.Models.User", b =>
@@ -400,12 +367,6 @@ namespace SixthWeb.Migrations
 
             modelBuilder.Entity("SixthWeb.Models.Question", b =>
                 {
-                    b.HasOne("SixthWeb.Models.Survey", null)
-                        .WithMany("Questions")
-                        .HasForeignKey("SurveyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("SixthWeb.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
@@ -416,11 +377,6 @@ namespace SixthWeb.Migrations
             modelBuilder.Entity("SixthWeb.Models.Question", b =>
                 {
                     b.Navigation("Options");
-                });
-
-            modelBuilder.Entity("SixthWeb.Models.Survey", b =>
-                {
-                    b.Navigation("Questions");
                 });
 #pragma warning restore 612, 618
         }
