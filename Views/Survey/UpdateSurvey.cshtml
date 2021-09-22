@@ -1,0 +1,78 @@
+﻿@model SixthWeb.Models.Survey
+    <script src="~/js/testDetails.js"></script>
+
+@{
+    ViewData["Title"] = "UpdateSurvey";
+    int questionNumber = 1;
+    string[] multipleChoice = { "A", "B", "C", "D", "E" };
+    int m = 0;
+}
+
+<h1>Edit Test</h1>
+
+<h4>@Model.NameOfSurvey</h4>
+<hr />
+<body>
+
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="UpdateSurvey">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="@Model.Id" />
+                <div class="form-group">
+                    <label asp-for="NameOfSurvey" class="control-label">Name of Test</label>
+                    <input asp-for="NameOfSurvey" class="form-control" required minlength="3" maxlength="50"/>
+                    <span asp-validation-for="NameOfSurvey" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" required minlength="3" maxlength="50"/>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                @for (int i = 0; i < Model.Questions.Count(); i++)
+                {
+                    <input type="hidden" asp-for="@Model.Questions[i].Id"/>
+                    <div class="form-group" id="qform-@Model.Questions[i].Id">
+                        <h6>Question: @questionNumber</h6>
+                        @{questionNumber++;}
+                        <label asp-for="@Model.Questions[i].Text" class="control-label"></label>
+                        <input asp-for="@Model.Questions[i].Text" class="form-control" />
+                        <span asp-validation-for="@Model.Questions[i].Text" class="text-danger"></span>
+                        <label asp-for="@Model.Questions[i].Answer" class="control-label"></label>
+                        <input asp-for="@Model.Questions[i].Answer" class="form-control" required/>
+                        <span asp-validation-for="@Model.Questions[i].Answer" class="text-danger"></span>
+
+                        @{Question currentQuestion = Model.Questions[i]; }
+
+                        @if (currentQuestion.Options != null)
+                        {
+                            m = 0;
+                            int optionCount = currentQuestion.Options.Count();
+
+                            @for (int k = 0; k < optionCount; k++)
+                            {
+                                <input type="hidden" asp-for="@Model.Questions[i].Options[k].Id" />
+                                <label asp-for="@Model.Questions[i].Options[k].Label" class="control-label">Option @multipleChoice[m]</label>
+                                m++;
+                                <input asp-for="@Model.Questions[i].Options[k].Label" class="form-control" />
+                            }
+                        }
+                        <br />
+                        <button class="btn btn-danger" type="button" onclick="postDeleteQuestion(@Model.Questions[i].Id)" id="deleteButton-@Model.Questions[i].Id">Delete Question</button>
+                    </div>
+                }
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" asp-action="UpdateSurvey" asp-controller="Survey" asp-route-testId="@Model.Id" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</body>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

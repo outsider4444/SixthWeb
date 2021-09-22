@@ -1,0 +1,80 @@
+﻿@model SixthWeb.Models.Survey
+<link href="~/css/site.css" rel="stylesheet" />
+<script src="~/js/TestDetails.js"></script>
+
+@{
+    ViewData["Title"] = "Details";
+    int questionNum = 1;
+    string[] multipleChoice = { "A", "B", "C", "D", "E", "F" };
+    int m = 0;
+}
+<body >
+    <div id="printableArea">
+        <div class="headerSection">
+            <h1>@Model.NameOfSurvey</h1>
+            <br />
+            <div id="testDates">
+                <h4> Created at: @Model.CreatedAt</h4>
+                <br />
+                <h4> Updated at: @Model.UpdatedAt</h4>
+            </div>
+            <div class="nameSpace">
+                <h4 id="name"></h4>
+            </div>
+        </div>
+        <br />
+        <br />
+
+
+        @foreach (Question question in Model.Questions)
+        {
+            <div class="questionType">        
+                    <h3>Multiple Choice: Pick the best option. </h3>
+                <h4>Question @questionNum: @question.Text </h4>
+                @{questionNum++;}
+                <br />
+            </div>
+
+
+            <div class="questionsPromptArea">
+                
+                <div class="questionOptions">
+                    @if (question.Options != null)
+                    {
+                        m = 0;
+                        foreach (Option option in question.Options)
+                        {  
+
+                            <h6>@multipleChoice[m] : @option.Label</h6>
+
+                            m++;
+                        }
+                    }
+                </div>
+            </div>
+
+            <div class="answers">
+                <p> Correct Answer: @question.Answer</p>
+            </div>
+            <br />
+        }
+        <br /><br /><br />
+    </div>
+</body>
+
+<div class="buttons">
+    <a asp-action="UpdateSurvey" asp-controller="Survey" asp-route-testId="@Model.Id">
+        <input class="btn btn-primary" type="button" value="Edit Test">
+    </a>
+
+    <button class="btn btn-info" onclick="printableTest()">Student View</button>
+
+    <button class="btn btn-warning" onclick="printableKey()">Key Only</button>
+
+    <button class="btn btn-secondary" onclick="printDiv('printableArea')">Print Test</button>
+
+    <a asp-action="Details" asp-controller="Survey" asp-route-testId="@Model.Id">
+        <input class="btn btn-success"type="button" value="Refresh" />
+    </a>
+    
+</div>
