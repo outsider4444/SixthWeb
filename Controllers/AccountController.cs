@@ -21,6 +21,7 @@ namespace SixthWeb.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            ViewBag.Title = "Регистрация нового пользователя";
             return View();
         }
 
@@ -55,6 +56,7 @@ namespace SixthWeb.Controllers
         [HttpGet]
         public IActionResult Login(string returnUrl = null)
         {
+            ViewBag.Title = "Логин";
             return View(new LoginViewModel { ReturnUrl = returnUrl });
         }
 

@@ -1,18 +1,37 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    Layout = null;
 }
-<!--Проверка на авторизацию пользователя, если авторизирован то приветствуем и выводим его имя
-    Вероятно стоит автоматизировать, но пока сойдет -->
-<div class="text-center">
 
-    @if (User.Identity.IsAuthenticated){
-        foreach (var i in Model)
-            {if (i.Email == User.Identity.Name){
-                <h1 class="display-4">Здравствуйте,@i.Name</h1>}}
-    }
-    else{
-        <h1 class="display-4">Вы не авторизированы</h1>
-    }
+<!--<div class="text-center">
+    <h1 class="display-4">Здравствуйте, @User.Identity.Name</h1>-->
+@* <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
+<!--</div>-->
 
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+</head>
+<body>
+    <div class="text-center">
+        <br />
+        <br />
+        <br />
+        <br />
+        <h1>Здравствуй Мир!</h1>
+        <h4>Авторизируйтесь, или зарегистрируйтесь в системе</h4>
+        <br />
+        <br />
+        <br />
+        <br />
+        <a class="btn btn-primary" asp-controller="Account" asp-action="Login">Логин</a>
+    </div>
+    <div class="text-center">
+        <br />
+        <br />
+        <a class="btn btn-primary" asp-controller="Account" asp-action="Register">Регистрация</a>
+    </div>
+</body>
+</html>
