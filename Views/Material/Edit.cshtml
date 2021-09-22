@@ -1,0 +1,30 @@
+﻿@model SixthWeb.Models.Material
+
+<script src="~/js/ckeditor4/ckeditor.js"></script>
+<script src="~/js/jquery.min.js"></script>
+
+<form method="post" asp-route-id="@Model.Id" asp-action="Edit" asp-controller="Material" enctype="multipart/form-data">
+
+    <div>
+        <label asp-for="Name">Название статьи</label><br />
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+
+    <div>
+        <label asp-for="Text">Содержание статьи</label>
+        <textarea name="Text" id="Text" rows="10" cols="80" asp-for="Text"> </textarea>
+    </div>
+    <button type="submit">Подтвердить</button>
+</form>
+
+<script>
+
+    $(document).ready(function () {
+        CKEDITOR.replace("#Text");
+    });
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+        var editor = CKEDITOR.replace('Text');
+    });
+</script>

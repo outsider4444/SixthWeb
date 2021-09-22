@@ -48,5 +48,56 @@ namespace SixthWeb.Controllers
             return RedirectToAction("List");
         }
 
+        // Редактирование объекта
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id != null)
+            {
+                Material item = await db.Materials.FirstOrDefaultAsync(p => p.Id == id);
+                if (item != null)
+                    return View(item);
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Material item)
+        {
+            db.Materials.Update(item);
+            await db.SaveChangesAsync();
+            return RedirectToAction("List");
+        }
+
+        // Страница удаления
+        [HttpGet]
+        [ActionName("Delete")]
+        public async Task<IActionResult> ConfirmDelete(int? id)
+        {
+            if (id != null)
+            {
+                Material item = await db.Materials.FirstOrDefaultAsync(p => p.Id == id);
+                if (item != null)
+                    return View(item);
+            }
+            return NotFound();
+        }
+
+        // Функция удаления
+        [HttpPost]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id != null)
+            {
+                Material item = await db.Materials.FirstOrDefaultAsync(p => p.Id == id);
+                if (item != null)
+                {
+                    db.Materials.Remove(item);
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("List");
+                }
+            }
+            return NotFound();
+        }
     }
+
 }
