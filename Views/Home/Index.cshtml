@@ -1,7 +1,7 @@
 ﻿@{
     Layout = null;
 }
-
+@model IEnumerable<User>
 <!--<div class="text-center">
     <h1 class="display-4">Здравствуйте, @User.Identity.Name</h1>-->
 @* <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
@@ -15,23 +15,67 @@
     <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
 </head>
 <body>
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (Model != null)
+        {
+            foreach (var user in Model)
+            {
+                if (user.Email == User.Identity.Name)
+                {
     <div class="text-center">
         <br />
         <br />
         <br />
         <br />
-        <h1>Здравствуй Мир!</h1>
-        <h4>Авторизируйтесь, или зарегистрируйтесь в системе</h4>
+        <h1>Здравствуйте, @user.Name</h1>
+        <h4>Выберите следующее действие, или зарегистрируйтесь в системе</h4>
+
+
+        <a asp-action="Index" asp-controller="Survey" class="btn btn-info">Тесты</a>
+        <br />
+        <br />
+        <a asp-action="List" asp-controller="Material" class="btn btn-info">Статьи</a>
+        <br />
+        <br />
+        <a class="btn btn-info">Результаты</a>
+        <br />
+        <br />
+        <a asp-action="Index" asp-controller="Assignment" class="btn btn-info">Задания</a>
         <br />
         <br />
         <br />
         <br />
-        <a class="btn btn-primary" asp-controller="Account" asp-action="Login">Логин</a>
+        <form method="post" asp-controller="Account" asp-action="Logout">
+            <input type="submit" class="btn btn-info" value="Выход" />
+        </form>
     </div>
-    <div class="text-center">
-        <br />
-        <br />
-        <a class="btn btn-primary" asp-controller="Account" asp-action="Register">Регистрация</a>
-    </div>
+                }
+            }
+        }
+    }
+    else
+    {
+        <div class="text-center">
+            <br />
+            <br />
+            <br />
+            <br />
+            <h1>Здравствуй, Мир!</h1>
+            <h4>Авторизируйтесь, или зарегистрируйтесь в системе</h4>
+            <br />
+            <br />
+            <br />
+            <br />
+            <a class="btn btn-primary" asp-controller="Account" asp-action="Login">Логин</a>
+        </div>
+        <div class="text-center">
+            <br />
+            <br />
+            <a class="btn btn-primary" asp-controller="Account" asp-action="Register">Регистрация</a>
+        </div>
+    }
+
+
 </body>
 </html>

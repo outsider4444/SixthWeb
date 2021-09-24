@@ -12,6 +12,10 @@ namespace SixthWeb.Models
         public string Surname { get; set; }
         
         // Является ли пользователь ментором
-        public bool IsMentor { get; set; } 
+        public bool IsMentor { get; set; }
+
+        // Задачи для пользователя
+        public List<Assignment> Assignments { get; set; } = new List<Assignment>();
+
     }
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SixthWeb.Models;
 
 namespace SixthWeb.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20210923152224_new migg")]
+    partial class newmigg
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -148,35 +150,6 @@ namespace SixthWeb.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("SixthWeb.Models.Assignment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Text")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("TimeDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Assignments");
                 });
 
             modelBuilder.Entity("SixthWeb.Models.Material", b =>
@@ -416,13 +389,6 @@ namespace SixthWeb.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SixthWeb.Models.Assignment", b =>
-                {
-                    b.HasOne("SixthWeb.Models.User", null)
-                        .WithMany("Assignments")
-                        .HasForeignKey("UserId");
-                });
-
             modelBuilder.Entity("SixthWeb.Models.Option", b =>
                 {
                     b.HasOne("SixthWeb.Models.Question", "Question")
@@ -457,11 +423,6 @@ namespace SixthWeb.Migrations
             modelBuilder.Entity("SixthWeb.Models.Survey", b =>
                 {
                     b.Navigation("Questions");
-                });
-
-            modelBuilder.Entity("SixthWeb.Models.User", b =>
-                {
-                    b.Navigation("Assignments");
                 });
 #pragma warning restore 612, 618
         }

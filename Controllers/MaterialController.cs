@@ -10,7 +10,6 @@ namespace SixthWeb.Controllers
 {
     public class MaterialController : Controller
     {
-        // List<Material> materials;
         private ApplicationContext db;
         public MaterialController(ApplicationContext context)
         {
@@ -18,6 +17,7 @@ namespace SixthWeb.Controllers
         }
         public IActionResult List()
         {
+            ViewBag.Title = "Список статей";
             var ABC = db.Materials.ToList();
             return View(ABC);
         }
@@ -36,13 +36,13 @@ namespace SixthWeb.Controllers
 
         [HttpGet]
         public IActionResult Create()
-        {
-            
+        { 
             return View();
         }
         [HttpPost]
         public async Task<IActionResult> Create(Material material)
         {
+            ViewBag.Title = "Создание новой статьи";
             db.Materials.Add(material);
             await db.SaveChangesAsync();
             return RedirectToAction("List");
@@ -51,6 +51,7 @@ namespace SixthWeb.Controllers
         // Редактирование объекта
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewBag.Title = "Редактирование статьи";
             if (id != null)
             {
                 Material item = await db.Materials.FirstOrDefaultAsync(p => p.Id == id);
@@ -73,6 +74,7 @@ namespace SixthWeb.Controllers
         [ActionName("Delete")]
         public async Task<IActionResult> ConfirmDelete(int? id)
         {
+            ViewBag.Title = "Удаление статьи";
             if (id != null)
             {
                 Material item = await db.Materials.FirstOrDefaultAsync(p => p.Id == id);

@@ -1,0 +1,14 @@
+﻿@model IEnumerable<SixthWeb.Models.Assignment>
+
+<div>
+    <a asp-action="Create">Создать новую задачу</a>
+    <table class="table">
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.Name</td>
+                <td><a asp-action="Detail" asp-controller="Assignment" asp-route-id="@p.Id">Подробности</a></td>
+            </tr>
+        }
+    </table>
+</div>
