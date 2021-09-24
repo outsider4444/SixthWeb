@@ -12,7 +12,7 @@ namespace SixthWeb.Controllers
     //а так же по задачам пользователей
     public class ResultsController : Controller
     {
-        public IActionResult List()
+        public IActionResult Index()
         {
             return View();
         }

@@ -29,7 +29,7 @@
         <br />
         <br />
         <h1>Здравствуйте, @user.Name</h1>
-        <h4>Выберите следующее действие, или зарегистрируйтесь в системе</h4>
+        <h4>Выберите следующее действие</h4>
 
 
         <a asp-action="Index" asp-controller="Survey" class="btn btn-info">Тесты</a>
@@ -38,7 +38,7 @@
         <a asp-action="List" asp-controller="Material" class="btn btn-info">Статьи</a>
         <br />
         <br />
-        <a class="btn btn-info">Результаты</a>
+        <a asp-action="Index" asp-controller="Results" class="btn btn-info">Результаты</a>
         <br />
         <br />
         <a asp-action="Index" asp-controller="Assignment" class="btn btn-info">Задания</a>

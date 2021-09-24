@@ -1,0 +1,39 @@
+﻿<div>
+
+    <input type="text" class="input-group-text" id="myInput" onkeyup="searchTable()" placeholder="Search for Result Name..." style="width: 100%; border: 2px solid; text-align: left;">
+
+    <br />
+
+    <label>Сотрудник:</label>
+    <select>
+        <option value="value">Вася</option>
+        <option value="value">Гриша</option>
+        <option value="value">Митя</option>
+    </select>
+
+    <label>Тип результата</label>
+    <select>
+        <option value="value">Тест</option>
+        <option value="value">Статья</option>
+        <option value="value">Задание</option>
+    </select>
+
+    <table id="sortableTable" class="table table-hover">
+        <thead>
+            <tr class="testHeader">
+                <th>
+                    Тема<i class="fas fa-sort" onclick="sortTable(0)"></i>
+                </th>
+                <th>
+                    Статус <i class="fas fa-sort" onclick="sortTable(1)"></i>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Бла бла</td>
+                <td>Не выполнено</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

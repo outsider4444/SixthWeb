@@ -9,6 +9,7 @@ using System.Linq;
 
 namespace SixthWeb.Controllers
 {
+    //Контроллер тестов
     public class SurveyController : Controller
     {
         private ApplicationContext db;

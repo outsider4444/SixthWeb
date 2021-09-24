@@ -19,13 +19,4 @@ namespace SixthWeb.Models
 
     // Сделать чтобы все задачи были привязаны к пользователям
 
-
-    public class UsersAssignment { 
-    
-        public List<User> User { get; set; } = new List<User>();
-
-        public List<Assignment> Assignment { get; set; } = new List<Assignment>();
-
-        public string AssignmentStatus { get; set; }
-    }
 }

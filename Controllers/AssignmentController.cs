@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SixthWeb.Models;
 using System;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace SixthWeb.Controllers
 {
+    // Контроллер заданий для пользователей
     public class AssignmentController : Controller
     {
         private ApplicationContext db;
@@ -37,6 +39,7 @@ namespace SixthWeb.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Create(Assignment assignment)
         {

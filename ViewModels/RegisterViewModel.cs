@@ -33,8 +33,5 @@ namespace SixthWeb.ViewModels
         [DataType(DataType.Password)]
         [Display(Name = "Подтвердить пароль")]
         public string PasswordConfirm { get; set; }
-
-        [Display(Name = "Ментор:")]
-        public bool IsMentor { get; set; }
     }
 }

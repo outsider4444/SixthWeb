@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace SixthWeb.Controllers
 {
+    // Контроллер аккаунтов пользователей
     public class AccountController : Controller
     {
         private readonly UserManager<User> _userManager;
@@ -32,7 +33,7 @@ namespace SixthWeb.Controllers
             if (ModelState.IsValid)
             {
                 User user = new User { Email = model.Email, UserName = model.Email,
-                    Name = model.Name, Surname=model.Surname, IsMentor=model.IsMentor };
+                    Name = model.Name, Surname=model.Surname};
                 // добавляем пользователя
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

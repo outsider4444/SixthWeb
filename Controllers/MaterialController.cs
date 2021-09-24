@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SixthWeb.Models;
 using System;
@@ -8,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace SixthWeb.Controllers
 {
+    // Контроллер статей
+    // Сделать поиск и пагинацию
+    [Authorize(Roles = "Ментор, Пользователь")]
     public class MaterialController : Controller
     {
         private ApplicationContext db;
@@ -15,6 +19,7 @@ namespace SixthWeb.Controllers
         {
             db = context;
         }
+
         public IActionResult List()
         {
             ViewBag.Title = "Список статей";
@@ -32,8 +37,9 @@ namespace SixthWeb.Controllers
             return NotFound();
         }
 
-        // Добавить страничку с созданием/редактированием вопроса к статье
 
+        [Authorize(Roles = "Ментор")]
+        // Добавить страничку с созданием/редактированием вопроса к статье
         [HttpGet]
         public IActionResult Create()
         { 
@@ -48,6 +54,7 @@ namespace SixthWeb.Controllers
             return RedirectToAction("List");
         }
 
+        [Authorize(Roles = "Ментор")]
         // Редактирование объекта
         public async Task<IActionResult> Edit(int? id)
         {
@@ -69,6 +76,7 @@ namespace SixthWeb.Controllers
             return RedirectToAction("List");
         }
 
+        [Authorize(Roles = "Ментор")]
         // Страница удаления
         [HttpGet]
         [ActionName("Delete")]

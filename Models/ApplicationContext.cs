@@ -18,8 +18,7 @@ namespace SixthWeb.Models
         public DbSet<Question> Questions { get; set; }
         public DbSet<Option> Options { get; set; }
         public DbSet<Assignment> Assignments { get; set; }
-        public DbSet<UsersAssignment> UsersAssignments { get; set; }
-
+        
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
