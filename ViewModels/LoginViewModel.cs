@@ -9,12 +9,12 @@ namespace SixthWeb.ViewModels
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Адрес электронной почты: ")]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Пароль ")]
+        [Display(Name = "Пароль: ")]
         public string Password { get; set; }
 
         [Display(Name = "Запомнить?")]
