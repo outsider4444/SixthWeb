@@ -45,6 +45,7 @@ namespace SixthWeb.Controllers
         {
             db.Assignments.Add(assignment);
             await db.SaveChangesAsync();
+
             return RedirectToAction("Index");
         }
     }

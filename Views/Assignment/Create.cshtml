@@ -16,9 +16,9 @@
         <span asp-validation-for="TimeDate"></span>
 
         <label >Статус выполнения задачи:</label><br />
-        <select >
-            <option>Не выполняется</option>
-            <option>Выполняется</option>
+        <select asp-for="Status">
+            <option value="Не выполняется">Не выполняется</option>
+            <option >Выполняется</option>
             <option>Выполнено</option>
         </select>
         <span ></span>

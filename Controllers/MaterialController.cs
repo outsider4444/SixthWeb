@@ -20,7 +20,7 @@ namespace SixthWeb.Controllers
             db = context;
         }
 
-        public IActionResult List()
+        public IActionResult Index()
         {
             ViewBag.Title = "Список статей";
             var ABC = db.Materials.ToList();
@@ -51,7 +51,7 @@ namespace SixthWeb.Controllers
             ViewBag.Title = "Создание новой статьи";
             db.Materials.Add(material);
             await db.SaveChangesAsync();
-            return RedirectToAction("List");
+            return RedirectToAction("Index");
         }
 
         [Authorize(Roles = "Ментор")]
@@ -73,7 +73,7 @@ namespace SixthWeb.Controllers
         {
             db.Materials.Update(item);
             await db.SaveChangesAsync();
-            return RedirectToAction("List");
+            return RedirectToAction("Index");
         }
 
         [Authorize(Roles = "Ментор")]
@@ -103,7 +103,7 @@ namespace SixthWeb.Controllers
                 {
                     db.Materials.Remove(item);
                     await db.SaveChangesAsync();
-                    return RedirectToAction("List");
+                    return RedirectToAction("Index");
                 }
             }
             return NotFound();

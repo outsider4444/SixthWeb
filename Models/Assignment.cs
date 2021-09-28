@@ -11,9 +11,12 @@ namespace SixthWeb.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Text { get; set; }
+        public string Status { get; set; }
 
         // Время на выполнение задачи
         public DateTime TimeDate { get; set; }
+
+        public List<Users_Assignment> Users_Assignments { get; set; }
 
     }
 

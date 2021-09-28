@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SixthWeb.Models;
 
 namespace SixthWeb.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20210928125515_add table1")]
+    partial class addtable1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -169,9 +171,14 @@ namespace SixthWeb.Migrations
                     b.Property<DateTime>("TimeDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("UsersAssignmentId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Assignment");
+                    b.HasIndex("UsersAssignmentId");
+
+                    b.ToTable("Assignments");
                 });
 
             modelBuilder.Entity("SixthWeb.Models.Material", b =>
@@ -344,6 +351,9 @@ namespace SixthWeb.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<int?>("UsersAssignmentId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -354,10 +364,12 @@ namespace SixthWeb.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
+                    b.HasIndex("UsersAssignmentId");
+
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("SixthWeb.Models.Users_Assignment", b =>
+            modelBuilder.Entity("SixthWeb.Models.UsersAssignment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -370,16 +382,12 @@ namespace SixthWeb.Migrations
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AssignmentId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Users_Assignment");
+                    b.ToTable("UsersAssignments");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -433,6 +441,13 @@ namespace SixthWeb.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("SixthWeb.Models.Assignment", b =>
+                {
+                    b.HasOne("SixthWeb.Models.UsersAssignment", null)
+                        .WithMany("Assignments")
+                        .HasForeignKey("UsersAssignmentId");
+                });
+
             modelBuilder.Entity("SixthWeb.Models.Option", b =>
                 {
                     b.HasOne("SixthWeb.Models.Question", "Question")
@@ -459,26 +474,11 @@ namespace SixthWeb.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("SixthWeb.Models.Users_Assignment", b =>
+            modelBuilder.Entity("SixthWeb.Models.User", b =>
                 {
-                    b.HasOne("SixthWeb.Models.Assignment", "Assignments")
-                        .WithMany("Users_Assignments")
-                        .HasForeignKey("AssignmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SixthWeb.Models.User", "Users")
-                        .WithMany("Users_Assignments")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Assignments");
-
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("SixthWeb.Models.Assignment", b =>
-                {
-                    b.Navigation("Users_Assignments");
+                    b.HasOne("SixthWeb.Models.UsersAssignment", null)
+                        .WithMany("Users")
+                        .HasForeignKey("UsersAssignmentId");
                 });
 
             modelBuilder.Entity("SixthWeb.Models.Question", b =>
@@ -491,9 +491,11 @@ namespace SixthWeb.Migrations
                     b.Navigation("Questions");
                 });
 
-            modelBuilder.Entity("SixthWeb.Models.User", b =>
+            modelBuilder.Entity("SixthWeb.Models.UsersAssignment", b =>
                 {
-                    b.Navigation("Users_Assignments");
+                    b.Navigation("Assignments");
+
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }
