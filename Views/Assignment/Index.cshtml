@@ -3,12 +3,38 @@
 <div>
     <a asp-action="Create">Создать новую задачу</a>
     <table class="table">
-        @foreach (var p in Model)
-        {
-            <tr>
-                <td>@p.Name</td>
-                <td><a asp-action="Detail" asp-controller="Assignment" asp-route-id="@p.Id">Подробности</a></td>
-            </tr>
+        @{
+            if (ViewBag.UserRole == true)
+            {
+                @foreach (var p in Model)
+                {
+                    <tr>
+                        <td>@p.Name</td>
+                        <td><a asp-action="Detail" asp-controller="Assignment" asp-route-id="@p.Id">Подробности</a></td>
+                    </tr>
+                }
+            }
+            else
+            {
+                @foreach (var p in Model)
+                {
+                    foreach (var user in ViewBag.UsersId)
+                    {
+
+                        if (p.UserId == user.Id)
+                        {
+                            <tr>
+                                <td>@p.Name</td>
+                                <td><a asp-action="Detail" asp-controller="Assignment" asp-route-id="@p.Id">Подробности</a></td>
+                            </tr>
+                        }
+
+                    }
+
+
+
+                }
+            }
         }
     </table>
 </div>

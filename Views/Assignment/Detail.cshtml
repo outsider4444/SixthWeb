@@ -1,13 +1,24 @@
 ﻿@model SixthWeb.Models.Assignment
 
-<h2>Статья: @Model.Name</h2>
-<h3>Срок выполнения: @Model.TimeDate</h3>
-<h3>Статус выполнения:</h3>
+<h2>Название задачи @Model.Name</h2>
+
+@foreach (var user in ViewBag.Users)
+{
+    if (user.Id == Model.UserId)
+    {
+
+        <h4>Исполнитель: @user.Name @user.Surname</h4>
+    }
+}
+
+<h4>Срок выполнения: до @Model.TimeDate</h4>
+<h3>Статус выполнения:@Model.Status</h3>
 <div>
 
     <dl class="dl-horizontal" style="float:left">
         @Html.Raw(Model.Text)
     </dl>
+    <br />
 
     <a class="btn btn-primary" asp-action="Edit" asp-controller="Assignment" asp-route-id="@Model.Id">Изменить</a> |
     <a class="btn btn-danger" asp-action="Delete" asp-controller="Assignment" asp-route-id="@Model.Id">Удалить</a>

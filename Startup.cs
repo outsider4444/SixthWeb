@@ -43,7 +43,7 @@ namespace SixthWeb
 
             app.UseRouting();
 
-            app.UseAuthentication();    // подключение аутентификации
+            app.UseAuthentication();    // Использование куки
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

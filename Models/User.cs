@@ -13,6 +13,6 @@ namespace SixthWeb.Models
 
         // Необходимо добавить задачи для пользователя
 
-        public List<Users_Assignment> Users_Assignments { get; set; }
+        public List<Assignment> Assignments { get; set; } = new List<Assignment>();
     }
 }

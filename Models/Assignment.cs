@@ -16,7 +16,10 @@ namespace SixthWeb.Models
         // Время на выполнение задачи
         public DateTime TimeDate { get; set; }
 
-        public List<Users_Assignment> Users_Assignments { get; set; }
+        public string UserId { get; set; }
+        public User User{ get; set; }  // компания пользователя
+
+        //public List<Users_Assignment> Users_Assignments { get; set; } = new List<Users_Assignment>();
 
     }
 

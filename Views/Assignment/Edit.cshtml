@@ -1,4 +1,95 @@
-﻿@page
-@model SixthWeb.Views.Assignment.EditModel
+﻿@model SixthWeb.Models.Assignment
+<script src="~/js/ckeditor4/ckeditor.js"></script>
+<script src="~/js/jquery.min.js"></script>
+
 @{
+    if (ViewBag.UserRole == true)
+    {
+        <form method="post">
+
+            <div>
+                <label asp-for="Name">Название задачи</label><br />
+                <input asp-for="Name" />
+                <span asp-validation-for="Name"></span><br />
+
+                <label asp-for="UserId">Пользователь</label><br />
+                <select asp-for="UserId">
+                    @{
+                        foreach (var user in ViewBag.Users)
+                        {
+                            <option value="@user.Id"> @user.Name  @user.Surname (@user.Email)</option>
+                        }
+                    }
+                </select><br />
+
+                <label asp-for="TimeDate">Дата выполнения задачи:</label><br />
+                <input asp-for="TimeDate" />
+                <span asp-validation-for="TimeDate"></span><br />
+
+                <label>Статус выполнения задачи:</label><br />
+                <select asp-for="Status">
+                    <option value="Не выполняется">Не выполняется</option>
+                    <option value="Выполняется">Выполняется</option>
+                    <option value="Выполнено">Выполнено</option>
+                </select>
+            </div>
+
+            <div>
+                <label hidden asp-for="Text">Содержание задачи</label>
+                <textarea hidden name="Text" id="Text" rows="10" cols="80" asp-for="Text"> </textarea>
+            </div>
+
+            <button type="submit" asp-action="Edit" asp-controller="Assignment">Подтвердить</button>
+        </form>
+    }
+    else
+    {
+        <form method="post">
+            <div>
+                <label hidden asp-for="Name">Название задачи</label><br />
+                <input hidden asp-for="Name" />
+                <span hidden asp-validation-for="Name"></span><br />
+
+                <label hidden asp-for="UserId">Пользователь</label><br />
+                <select hidden asp-for="UserId">
+                    @{
+                        foreach (var user in ViewBag.Users)
+                        {
+                            <option value="@user.Id"> @user.Name  @user.Surname (@user.Email)</option>
+                        }
+                    }
+                </select><br />
+
+                <label hidden asp-for="TimeDate">Дата выполнения задачи:</label><br />
+                <input hidden asp-for="TimeDate" />
+                <span hidden asp-validation-for="TimeDate"></span><br />
+
+                <label>Статус выполнения задачи:</label><br />
+                <select asp-for="Status">
+                    <option value="Не выполняется">Не выполняется</option>
+                    <option value="Выполняется">Выполняется</option>
+                    <option value="Выполнено">Выполнено</option>
+                </select>
+            </div>
+
+            <div>
+                <label hidden asp-for="Text">Содержание задачи</label>
+                <textarea hidden name="Text" id="Text" rows="10" cols="80" asp-for="Text"> </textarea>
+            </div>
+
+            <button type="submit" asp-action="Edit" asp-controller="Assignment">Подтвердить</button>
+        </form>
+    }
 }
+
+
+<script>
+
+    $(document).ready(function () {
+        CKEDITOR.replace("#Text");
+    });
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+        var editor = CKEDITOR.replace('Text');
+    });
+</script>

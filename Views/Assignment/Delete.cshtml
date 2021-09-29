@@ -1,4 +1,27 @@
-﻿@page
-@model SixthWeb.Views.Assignment.DeleteModel
+﻿@model SixthWeb.Models.Assignment
 @{
+    ViewBag.Title = "Удаление задачи";
 }
+
+<form asp-controller="Assignment" asp-action="Delete" method="post">
+    <div class="form-group">
+        <div>
+            <dl class="dl-horizontal">
+
+                <dt>Исполнитель:</dt>
+                <dd>
+                    @Html.Raw(Model.User)
+                </dd>
+
+                <dt>Содержание задачи</dt>
+                <dd>
+                    @Html.Raw(Model.Text)
+                </dd>
+            </dl>
+
+            <div>
+                <input type="submit" class="btn btn-danger" value="Удалить" />
+            </div>
+        </div>
+    </div>
+</form>
